@@ -1,0 +1,82 @@
+Screen {
+    background: $background;
+}
+
+#header-bar {
+    dock: top;
+    height: auto;
+    background: $panel;
+    color: $text;
+    text-style: bold;
+    padding: 0 1;
+    text-align: center;
+}
+
+#main-scroll {
+    height: 1fr;
+    scrollbar-size: 0 0;
+}
+
+#session-list {
+    height: auto;
+    margin-top: 1;
+    scrollbar-size: 0 0;
+}
+
+#session-list > ListItem {
+    height: auto;
+    background: transparent;
+}
+
+#session-list > ListItem.--highlight {
+    background: transparent;
+}
+
+#session-list > ListItem.--highlight SessionCard {
+    background: $panel;
+}
+#session-list > ListItem.--highlight SessionCard.working {
+    border: tall $success;
+}
+#session-list > ListItem.--highlight SessionCard.waiting {
+    border: tall $warning;
+}
+#session-list > ListItem.--highlight SessionCard.permission {
+    border: tall $error;
+}
+
+#section-divider {
+    margin: 1 1 0 1;
+    color: $surface-lighten-1;
+}
+
+#recent-browser {
+    height: auto;
+}
+
+#project-select {
+    margin: 0 1;
+    width: 1fr;
+}
+
+#recent-search {
+    margin: 0 1;
+}
+
+#recent-list {
+    height: auto;
+    scrollbar-size: 0 0;
+}
+
+#recent-list > ListItem {
+    height: auto;
+    background: transparent;
+}
+
+#recent-list > ListItem.--highlight {
+    background: transparent;
+}
+
+#recent-list > ListItem.--highlight RecentCard {
+    background: $panel;
+}
