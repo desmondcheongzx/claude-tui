@@ -31,6 +31,7 @@ class SessionInfo:
     git_branch: str = ""
     last_message: str = ""
     is_active_window: bool = False
+    sound_pack: str = ""
 
     def __post_init__(self) -> None:
         if self.project_path and not self.project_name:

@@ -43,6 +43,7 @@ def _session_fingerprint(s: SessionInfo) -> tuple:
         s.git_branch,
         s.last_message,
         s.is_active_window,
+        s.sound_pack,
     )
 
 

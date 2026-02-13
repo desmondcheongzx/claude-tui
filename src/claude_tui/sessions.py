@@ -2,12 +2,29 @@
 
 from __future__ import annotations
 
+import os
 import time
 from typing import Any, Callable
 
 from claude_tui.models import SessionInfo, SessionStatus
 from claude_tui.tmux import get_active_windows, list_claude_windows, list_panes, match_pid_to_window
 from claude_tui.transcript import get_last_message
+
+SOUND_PACKS = ["peon", "ogre_magi", "tf2_heavy", "tf2_sniper", "tf2_pyro", "glados", "wheatley", "turret"]
+SOUND_SESSIONS_DIR = os.path.expanduser("~/.claude/hooks/.sound_sessions")
+
+
+def _read_sound_pack(session_id: str) -> str:
+    """Read the sound pack index from the game-sound hook's session file."""
+    path = os.path.join(SOUND_SESSIONS_DIR, session_id)
+    try:
+        with open(path) as f:
+            index = int(f.read().strip())
+        if 0 <= index < len(SOUND_PACKS):
+            return SOUND_PACKS[index]
+    except (FileNotFoundError, ValueError, OSError):
+        pass
+    return ""
 
 
 class SessionStore:
@@ -95,6 +112,10 @@ class SessionStore:
                 s.project_name = s.project_path.rstrip("/").rsplit("/", 1)[-1]
         if shell_pid is not None and s.shell_pid is None:
             s.shell_pid = shell_pid
+        # Retry reading sound pack on every event until known (file may not
+        # exist yet on SessionStart due to race with the async hook)
+        if not s.sound_pack:
+            s.sound_pack = _read_sound_pack(session_id)
         return s
 
     def _handle_session_start(self, session_id: str, data: dict[str, Any], shell_pid: int | None) -> None:
