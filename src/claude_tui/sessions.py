@@ -10,7 +10,7 @@ from claude_tui.models import SessionInfo, SessionStatus
 from claude_tui.tmux import get_active_windows, list_claude_windows, list_panes, match_pid_to_window
 from claude_tui.transcript import get_last_message
 
-SOUND_PACKS = ["peon", "ogre_magi", "tf2_heavy", "tf2_sniper", "tf2_pyro", "glados", "wheatley", "turret"]
+SOUND_PACKS = ["peon", "ogre_magi", "tf2_heavy", "tf2_scout", "tf2_pyro", "glados", "wheatley", "turret", "naruto", "rick_sanchez"]
 SOUND_SESSIONS_DIR = os.path.expanduser("~/.claude/hooks/.sound_sessions")
 
 
